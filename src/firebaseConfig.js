@@ -1,6 +1,10 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+// import firebase from 'firebase/compat/app';
+// import 'firebase/compat/auth';
+// import 'firebase/compat/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth"
 
 console.log(process.env.REACT_APP_API_KEY);
 const firebaseConfig = {
@@ -13,8 +17,11 @@ const firebaseConfig = {
     measurementId: "G-CMYMV93VN7"
 }
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebaseApp.firestore();
-
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const auth = firebase.auth();
+// const db = firebaseApp.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
 export {auth, db}
